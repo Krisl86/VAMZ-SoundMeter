@@ -12,7 +12,7 @@ import com.example.soundmeter.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: VolumeRecorderViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

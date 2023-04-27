@@ -1,6 +1,7 @@
 package com.example.soundmeter
 
 import android.media.MediaRecorder
+import java.io.File
 import java.io.IOException
 import kotlin.math.log10
 
@@ -12,33 +13,37 @@ enum class RecorderState {
 
 class VolumeRecorder {
 
-    private var recorder = MediaRecorder()
-    private val fileName = "/storage/emulated/0/Download/hello.mp3"
-    private val directory = ""
+    private val savePath = "/storage/emulated/0/Download/hello.mp3"
     private val calibrationOffset = 60
 
+    private var saveRecordingToFile = false
     private var state = RecorderState.RELEASED
+    private lateinit var recorder: MediaRecorder
 
-    fun start() {
+    fun start(saveRecording: Boolean) {
         if (state == RecorderState.PAUSED)
             resume()
         if (state == RecorderState.RECORDING)
             return
 
-        recorder.apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
-            setOutputFile(fileName)
+        saveRecordingToFile = saveRecording
 
-            try {
+        recorder = MediaRecorder() // after MR is released, new instance has to be created and used
+
+        try {
+            recorder.apply {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+                setOutputFile(savePath)
+
                 prepare()
-            } catch (e: IOException) {
-
+                start()
+                state = RecorderState.RECORDING
             }
-
-            start()
-            state = RecorderState.RECORDING
+        } catch (e: Exception) {
+            e.printStackTrace()
+            recorder.release()
         }
     }
 
@@ -54,6 +59,11 @@ class VolumeRecorder {
             recorder.stop()
             recorder.release()
             state = RecorderState.RELEASED
+
+            if (!saveRecordingToFile) {
+                val file = File(savePath)
+                file.delete()
+            }
         }
     }
 

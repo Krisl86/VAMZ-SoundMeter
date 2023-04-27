@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.soundmeter.MainViewModel" />
+            type="com.example.soundmeter.VolumeRecorderViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,28 +23,50 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"/>
 
-        <ToggleButton
-            android:id="@+id/startPauseButton"
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.isRecordingText()}"
-            android:onClick="@{() -> vm.switchRecording()}"
+            android:text="@string/save_recording"
+            android:layout_margin="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/recordingControlsLinearLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1"
-            android:layout_margin="10dp" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <Button
-            android:id="@+id/stopButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/recordingControlsLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/stop"
-            android:onClick="@{() -> vm.stopRecording()}"
-            android:enabled="@{vm.isStopped}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/startPauseButton"
-            android:layout_margin="10dp"/>
+            android:gravity="center_horizontal">
 
+            <Button
+                android:id="@+id/startButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:onClick="@{() -> vm.switchRecording()}"
+                android:enabled="@{vm.startEnabled}"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/pauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pause"
+                android:onClick="@{() -> vm.switchRecording()}"
+                android:enabled="@{vm.pauseEnabled}"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:id="@+id/stopButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stop"
+                android:onClick="@{() -> vm.stopRecording()}"
+                android:enabled="@{vm.stopEnabled}"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
