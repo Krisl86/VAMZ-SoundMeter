@@ -6,14 +6,15 @@ import androidx.lifecycle.ViewModel
 import java.util.Timer
 import kotlin.concurrent.timerTask
 
-enum class RecordingState(val string: String) {
-    STARTED("Started"),
-    PAUSED("Paused"),
-    STOPPED("Stopped")
+enum class RecordingState {
+    STARTED,
+    PAUSED,
+    STOPPED
 }
 
-class VolumeRecorderViewModel() : ViewModel() {
+class VolumeRecorderViewModel : ViewModel() {
 
+    private var saveToFile = false
     private val recorder = VolumeRecorder()
 
     private var timer = Timer()
@@ -26,9 +27,12 @@ class VolumeRecorderViewModel() : ViewModel() {
         set(value) {
             field = value
             when (value) {
-                RecordingState.STARTED -> { _startEnabled.value = false; _pauseEnabled.value = true; _stopEnabled.value = true}
-                RecordingState.PAUSED -> { _startEnabled.value = true; _pauseEnabled.value = false; _stopEnabled.value = true}
-                RecordingState.STOPPED -> { _startEnabled.value = true; _pauseEnabled.value = false; _stopEnabled.value = false}
+                RecordingState.STARTED -> { _startEnabled.value = false; _pauseEnabled.value = true;
+                    _stopEnabled.value = true; _saveToFileEnabled.value = false}
+                RecordingState.PAUSED -> { _startEnabled.value = true; _pauseEnabled.value = false;
+                    _stopEnabled.value = true; _saveToFileEnabled.value = false}
+                RecordingState.STOPPED -> { _startEnabled.value = true; _pauseEnabled.value = false;
+                    _stopEnabled.value = false; _saveToFileEnabled.value = true}
             }
         }
 
@@ -43,6 +47,10 @@ class VolumeRecorderViewModel() : ViewModel() {
     private var _stopEnabled = MutableLiveData(false);
     val stopEnabled: LiveData<Boolean>
         get() = _stopEnabled
+
+    private var _saveToFileEnabled = MutableLiveData(true);
+    val saveToFileEnabled: LiveData<Boolean>
+        get() = _saveToFileEnabled
 
     fun switchRecording() {
         if (recordingState == RecordingState.STARTED) {
@@ -64,8 +72,12 @@ class VolumeRecorderViewModel() : ViewModel() {
         }
     }
 
+    fun switchSaveToFile() {
+        saveToFile = !saveToFile
+    }
+
     private fun startRecording() {
-        recorder.start(false)
+        recorder.start(saveToFile)
 
         timer = Timer() // has to be reassigned after timer.cancel()
         timer.scheduleAtFixedRate(
