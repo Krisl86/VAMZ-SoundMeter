@@ -28,13 +28,26 @@ class VolumeRecorderViewModel : ViewModel() {
             field = value
             when (value) {
                 RecordingState.STARTED -> { _startEnabled.value = false; _pauseEnabled.value = true;
-                    _stopEnabled.value = true; _saveToFileEnabled.value = false}
+                    _stopEnabled.value = true; _saveToFileEnabled.value = false;
+                    _refreshRateEnabled.value = false;}
                 RecordingState.PAUSED -> { _startEnabled.value = true; _pauseEnabled.value = false;
-                    _stopEnabled.value = true; _saveToFileEnabled.value = false}
+                    _stopEnabled.value = true; _saveToFileEnabled.value = false;
+                    _refreshRateEnabled.value = false;}
                 RecordingState.STOPPED -> { _startEnabled.value = true; _pauseEnabled.value = false;
-                    _stopEnabled.value = false; _saveToFileEnabled.value = true}
+                    _stopEnabled.value = false; _saveToFileEnabled.value = true;
+                    _refreshRateEnabled.value = true;}
             }
         }
+
+    val minRefreshRate = 0.5f
+    val maxRefreshRate = 5f
+
+    val refreshRate = MutableLiveData(0.5f)
+
+    fun updateRefreshRate(value: Float) {
+        if (refreshRate.value != value)
+            refreshRate.value = value
+    }
 
     private var _startEnabled = MutableLiveData(true);
     val startEnabled: LiveData<Boolean>
@@ -51,6 +64,10 @@ class VolumeRecorderViewModel : ViewModel() {
     private var _saveToFileEnabled = MutableLiveData(true);
     val saveToFileEnabled: LiveData<Boolean>
         get() = _saveToFileEnabled
+
+    private var _refreshRateEnabled = MutableLiveData(true);
+    val refreshRateEnabled: LiveData<Boolean>
+        get() = _refreshRateEnabled
 
     fun switchRecording() {
         if (recordingState == RecordingState.STARTED) {
@@ -79,17 +96,23 @@ class VolumeRecorderViewModel : ViewModel() {
     private fun startRecording() {
         recorder.start(saveToFile)
 
+        val rate = ((refreshRate.value ?: 0.5f) * 1000).toLong()
+
         timer = Timer() // has to be reassigned after timer.cancel()
         timer.scheduleAtFixedRate(
             timerTask {
                 try {
-                    _decibels.postValue(recorder.getDecibelValue())
+                    var recordedValue = recorder.getDecibelValue()
+                    if (recordedValue < -1000)
+                        recordedValue = 0.0
+
+                    _decibels.postValue(recordedValue)
                 }
                 catch (e: Exception) {
                     e.printStackTrace()
                 }
 
-            }, 250, 250
+            }, 0, rate
         )
 
         recordingState = RecordingState.STARTED

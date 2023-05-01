@@ -27,5 +27,9 @@ class MainFragment : Fragment() {
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.refreshRateSlider.addOnChangeListener {slider, value, fromUser ->
+            viewModel.updateRefreshRate(value)
+        }
     }
 }
