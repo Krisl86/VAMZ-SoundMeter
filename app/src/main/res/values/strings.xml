@@ -4,4 +4,5 @@
     <string name="start">Start</string>
     <string name="pause">Pause</string>
     <string name="save_recording">Save Recordings to Device</string>
+    <string name="sound_recording_refresh_rate">Sound Recording Refresh Rate</string>
 </resources>
