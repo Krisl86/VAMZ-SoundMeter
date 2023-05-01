@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.Timer
 import kotlin.concurrent.timerTask
+import kotlin.math.roundToInt
 
 enum class RecordingState {
     STARTED,
@@ -19,8 +20,9 @@ class VolumeRecorderViewModel : ViewModel() {
 
     private var timer = Timer()
 
-    private var _decibels = MutableLiveData(0.0)
-    val decibels: LiveData<Double>
+    private var _decibels = MutableLiveData(0)
+
+    val decibels: LiveData<Int>
         get() = _decibels
 
     private var recordingState = RecordingState.STOPPED
@@ -83,7 +85,7 @@ class VolumeRecorderViewModel : ViewModel() {
     fun stopRecording() {
         if (recordingState == RecordingState.STARTED || recordingState == RecordingState.PAUSED) {
             recorder.stop()
-            _decibels.value = 0.0
+            _decibels.value = 0
             timer.cancel()
             recordingState = RecordingState.STOPPED
         }
@@ -102,9 +104,9 @@ class VolumeRecorderViewModel : ViewModel() {
         timer.scheduleAtFixedRate(
             timerTask {
                 try {
-                    var recordedValue = recorder.getDecibelValue()
+                    var recordedValue = recorder.getDecibelValue().roundToInt()
                     if (recordedValue < -1000)
-                        recordedValue = 0.0
+                        recordedValue = 0
 
                     _decibels.postValue(recordedValue)
                 }
