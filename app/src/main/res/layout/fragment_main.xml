@@ -11,19 +11,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="16dp"
         tools:context=".MainFragment">
 
-        <TextView
-            android:id="@+id/textView1"
+        <com.ekn.gruzer.gaugelibrary.ArcGauge
+            android:id="@+id/decibelArcGauge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{vm.decibels.toString()}"
+            android:value="@{vm.decibels}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="10dp"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <CheckBox
+            android:id="@+id/saveRecordingCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save_recording"
@@ -49,6 +50,7 @@
             android:id="@+id/refreshRateSlider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:valueFrom="@{vm.minRefreshRate}"
             android:valueTo="@{vm.maxRefreshRate}"
             android:value="@{vm.refreshRate}"
@@ -59,6 +61,7 @@
             app:layout_constraintBottom_toTopOf="@id/recordingControlsLinearLayout"/>
 
         <LinearLayout
+            android:layout_margin="8dp"
             android:id="@+id/recordingControlsLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +77,8 @@
                 android:text="@string/start"
                 android:onClick="@{() -> vm.switchRecording()}"
                 android:enabled="@{vm.startEnabled}"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/pauseButton"
@@ -83,7 +87,8 @@
                 android:text="@string/pause"
                 android:onClick="@{() -> vm.switchRecording()}"
                 android:enabled="@{vm.pauseEnabled}"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/stopButton"
@@ -92,7 +97,8 @@
                 android:text="@string/stop"
                 android:onClick="@{() -> vm.stopRecording()}"
                 android:enabled="@{vm.stopEnabled}"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -50,4 +50,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
+
+    implementation 'com.github.Gruzer:simple-gauge-android:0.3.1'
 }
