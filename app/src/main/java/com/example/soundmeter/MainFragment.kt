@@ -1,5 +1,6 @@
 package com.example.soundmeter
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ekn.gruzer.gaugelibrary.Range
 import com.example.soundmeter.databinding.FragmentMainBinding
+import com.example.soundmeter.enums.NoiseReference
+import com.example.soundmeter.viewmodels.VolumeRecorderViewModel
 
 class MainFragment : Fragment() {
 
@@ -38,7 +41,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setupGauge() {
-        val gauge = binding.decibelArcGauge
+        val gauge = binding.decibelFullGauge
 
         gauge.setFormatter{ it.toInt().toString() }
         gauge.valueColor = Color.BLACK
@@ -47,33 +50,43 @@ class MainFragment : Fragment() {
 
         val r1 = Range()
         r1.color = Color.parseColor("#0cad4d")
-        r1.from = 0.0
-        r1.to = 29.0
+        r1.from = NoiseReference.WHISPER.minValue
+        r1.to = NoiseReference.WHISPER.maxValue
 
         val r2 = Range()
-        r2.color = Color.parseColor("#a9c437")
-        r2.from = 30.0
-        r2.to = 59.0
+        r2.color = Color.parseColor("#6eb646")
+        r2.from = NoiseReference.HOME.minValue
+        r2.to = NoiseReference.HOME.maxValue
 
         val r3 = Range()
-        r3.color = Color.parseColor("#fdd106")
-        r3.from = 60.0
-        r3.to = 84.0
+        r3.color = Color.parseColor("#a9c437")
+        r3.from = NoiseReference.CONVERSATION.minValue
+        r3.to = NoiseReference.CONVERSATION.maxValue
 
         val r4 = Range()
-        r4.color = Color.parseColor("#f8a21a")
-        r4.from = 85.0
-        r4.to = 99.0
+        r4.color = Color.parseColor("#fcde00")
+        r4.from = NoiseReference.VACUUM.minValue
+        r4.to = NoiseReference.VACUUM.maxValue
 
         val r5 = Range()
-        r5.color = Color.parseColor("#f16820")
-        r5.from = 100.0
-        r5.to = 119.0
+        r5.color = Color.parseColor("#fdad18")
+        r5.from = NoiseReference.MOTORCYCLE.minValue
+        r5.to = NoiseReference.MOTORCYCLE.maxValue
 
         val r6 = Range()
-        r6.color = Color.parseColor("#ec1a23")
-        r6.from = 120.0
-        r6.to = 140.0
+        r6.color = Color.parseColor("#f5891c")
+        r6.from = NoiseReference.CHAINSAW.minValue
+        r6.to = NoiseReference.CHAINSAW.maxValue
+
+        val r7 = Range()
+        r7.color = Color.parseColor("#f16820")
+        r7.from = NoiseReference.CONCERT.minValue
+        r7.to = NoiseReference.CONCERT.maxValue
+
+        val r8 = Range()
+        r8.color = Color.parseColor("#ec1a23")
+        r8.from = NoiseReference.GUN.minValue
+        r8.to = NoiseReference.GUN.maxValue
 
         gauge.addRange(r1)
         gauge.addRange(r2)
@@ -81,5 +94,7 @@ class MainFragment : Fragment() {
         gauge.addRange(r4)
         gauge.addRange(r5)
         gauge.addRange(r6)
+        gauge.addRange(r7)
+        gauge.addRange(r8)
     }
 }

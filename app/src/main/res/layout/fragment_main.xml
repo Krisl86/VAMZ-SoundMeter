@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.soundmeter.VolumeRecorderViewModel" />
+            type="com.example.soundmeter.viewmodels.VolumeRecorderViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,14 +14,26 @@
         android:layout_margin="16dp"
         tools:context=".MainFragment">
 
-        <com.ekn.gruzer.gaugelibrary.ArcGauge
-            android:id="@+id/decibelArcGauge"
+        <com.ekn.gruzer.gaugelibrary.FullGauge
+            android:id="@+id/decibelFullGauge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:value="@{vm.decibels}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/noiseRefTextView"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/noiseRefTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.noiseRefString}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/saveRecordingCheckBox"
+            android:textSize="18sp"
+            android:layout_marginBottom="20dp"/>
 
         <CheckBox
             android:id="@+id/saveRecordingCheckBox"

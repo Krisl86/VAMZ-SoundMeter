@@ -14,7 +14,7 @@ enum class RecorderState {
 class VolumeRecorder {
 
     private val savePath = "/storage/emulated/0/Download/hello.mp3"
-    private val calibrationOffset = 60
+    private val calibrationOffset = 90
 
     private var saveRecordingToFile = false
     private var state = RecorderState.RELEASED
