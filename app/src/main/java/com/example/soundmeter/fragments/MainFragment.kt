@@ -1,6 +1,5 @@
-package com.example.soundmeter
+package com.example.soundmeter.fragments
 
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,14 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ekn.gruzer.gaugelibrary.Range
+import com.example.soundmeter.R
 import com.example.soundmeter.databinding.FragmentMainBinding
 import com.example.soundmeter.enums.NoiseReference
-import com.example.soundmeter.viewmodels.VolumeRecorderViewModel
+import com.example.soundmeter.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-    private val viewModel: VolumeRecorderViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -5,14 +5,14 @@
     <data>
         <variable
             name="vm"
-            type="com.example.soundmeter.viewmodels.VolumeRecorderViewModel" />
+            type="com.example.soundmeter.viewmodels.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        tools:context=".MainFragment">
+        tools:context=".fragments.MainFragment">
 
         <com.ekn.gruzer.gaugelibrary.FullGauge
             android:id="@+id/decibelFullGauge"

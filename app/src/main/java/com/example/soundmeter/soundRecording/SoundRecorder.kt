@@ -1,8 +1,7 @@
-package com.example.soundmeter
+package com.example.soundmeter.soundRecording
 
 import android.media.MediaRecorder
 import java.io.File
-import java.io.IOException
 import kotlin.math.log10
 
 enum class RecorderState {
@@ -11,10 +10,10 @@ enum class RecorderState {
     PAUSED,
 }
 
-class VolumeRecorder {
+class SoundRecorder {
 
     private val savePath = "/storage/emulated/0/Download/hello.mp3"
-    private val calibrationOffset = 90
+    private val calibrationOffset = 100
 
     private var saveRecordingToFile = false
     private var state = RecorderState.RELEASED
@@ -32,7 +31,7 @@ class VolumeRecorder {
 
         try {
             recorder.apply {
-                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setAudioSource(MediaRecorder.AudioSource.UNPROCESSED) //
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                 setOutputFile(savePath)
