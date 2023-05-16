@@ -2,25 +2,17 @@ package com.example.soundmeter.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.soundmeter.enums.NoiseReference
 import com.example.soundmeter.soundRecording.RecordingState
 import com.example.soundmeter.soundRecording.VolumeRecorder
-import com.example.soundmeter.enums.NoiseReference
 
-class MainViewModel : ViewModel() {
-
-    private val volumeRecorder = VolumeRecorder()
-
-    private var _decibels = MutableLiveData(0)
-    val decibels: LiveData<Int>
-        get() = _decibels
+class MainViewModel : SoundMeterViewModelBase() {
 
     private var _noiseRefString = MutableLiveData(NoiseReference.WHISPER.description)
     val noiseRefString: LiveData<String>
         get() = _noiseRefString
 
     init {
-        volumeRecorder.decibelsChanged += { value -> _decibels.postValue(value) }
         volumeRecorder.noiseRefStringChanged += { value -> _noiseRefString.postValue(value) }
         volumeRecorder.recordingStateChanged += ::updateVisibilities
     }
@@ -56,14 +48,6 @@ class MainViewModel : ViewModel() {
     private var _refreshRateEnabled = MutableLiveData(true)
     val refreshRateEnabled: LiveData<Boolean>
         get() = _refreshRateEnabled
-
-    fun switchRecording() {
-        volumeRecorder.switchRecording()
-    }
-
-    fun stopRecording() {
-        volumeRecorder.stopRecording()
-    }
 
     fun switchSaveToFile() {
         volumeRecorder.saveToFile = !volumeRecorder.saveToFile

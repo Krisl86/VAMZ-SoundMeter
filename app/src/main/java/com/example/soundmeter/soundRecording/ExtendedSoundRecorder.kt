@@ -36,6 +36,12 @@ class VolumeRecorder {
     var saveToFile = false
     var refreshRate = 0.5f
 
+    var calibrationOffset: Int
+        get() = recorder.calibrationOffset
+        set(value) {
+            recorder.calibrationOffset = value
+        }
+
     var decibels = 0
         private set(value) {
             field = value

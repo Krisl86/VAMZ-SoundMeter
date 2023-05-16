@@ -5,4 +5,11 @@
     <string name="pause">Pause</string>
     <string name="save_recording">Save Recordings to Device</string>
     <string name="sound_recording_refresh_rate">Sound Recording Refresh Rate</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_the_sound_meter_app">Welcome to the Sound Meter App!</string>
+    <string name="things_to_know_before_using_the_app">Things to know before using the app:</string>
+    <string name="calibration_text">-the measurements made by this app are only approximations of the volume level\n\n -the microphone in mobile devices is not suitable for accurate measurements - specialized equipment is needed for this\n\n -before first use, the app needs to be calibrated - this is ideally done using certified volume measuring device\n\n -however for simple estimation of sound level, the app can be calibrated in following way:</string>
+    <string name="calibration_offset">Calibration offset</string>
+    <string name="confirm">Confirm</string>
 </resources>

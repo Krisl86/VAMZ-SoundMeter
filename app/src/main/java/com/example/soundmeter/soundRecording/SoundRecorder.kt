@@ -11,13 +11,16 @@ enum class RecorderState {
 }
 
 class SoundRecorder {
+    private val maxAmplitude = 32767.0 // the actual max possible amplitude for 16-bit audio sample
+                                       // as provided by the android media recorder
 
-    private val savePath = "/storage/emulated/0/Download/hello.mp3"
-    private val calibrationOffset = 100
+    private val savePath = "/storage/emulated/0/Download/hello.mp3" // TODO change this storage
 
     private var saveRecordingToFile = false
     private var state = RecorderState.RELEASED
     private lateinit var recorder: MediaRecorder
+
+    var calibrationOffset = 0
 
     fun start(saveRecording: Boolean) {
         if (state == RecorderState.PAUSED)
@@ -67,8 +70,9 @@ class SoundRecorder {
     }
 
     fun getDecibelValue(): Double {
-        val amplitude = recorder.maxAmplitude
-        return (20 * (log10(amplitude / 32767.0))) + calibrationOffset
+        val amplitude = recorder.maxAmplitude // despite the name 'maxAmplitude'
+        // it is actually the recorded amplitude value
+        return (20 * (log10(amplitude / maxAmplitude))) + calibrationOffset
     }
 
     private fun resume() {
