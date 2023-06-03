@@ -1,5 +1,6 @@
 package com.example.soundmeter.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,6 +28,12 @@ class CalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
+        if (!preferences!!.getBoolean(getString(R.string.first_start_key), true))
+        {
+            loadMainFragment()
+        }
+
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -36,11 +43,23 @@ class CalibrationFragment : Fragment() {
 
         binding.confirmCalibrationButton.setOnClickListener {
             viewModel.confirmCalibration()
-            val mainFragment = MainFragment()
-            val fm = fragmentManager
-            val ft = fm?.beginTransaction()
-            ft?.replace(R.id.calibrationFragment, mainFragment)
-            ft?.commit()
+
+
+            with (preferences.edit()) {
+                putInt(getString(R.string.calibration_key), viewModel.calibrationOffset)
+                putBoolean(getString(R.string.first_start_key), false)
+                apply()
+            }
+
+            loadMainFragment()
         }
+    }
+
+    private fun loadMainFragment() {
+        val mainFragment = MainFragment()
+        val fm = fragmentManager
+        val ft = fm?.beginTransaction()
+        ft?.replace(R.id.calibrationFragment, mainFragment)
+        ft?.commit()
     }
 }

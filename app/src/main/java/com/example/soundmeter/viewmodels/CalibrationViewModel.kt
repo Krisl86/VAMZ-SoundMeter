@@ -5,11 +5,18 @@ class CalibrationViewModel : SoundMeterViewModelBase() {
         switchRecording()
     }
 
+    var calibrationOffset: Int
+        get() = volumeRecorder.calibrationOffset
+        set(value) {
+            volumeRecorder.calibrationOffset = value
+        }
+
     fun updateCalibrationValue(value: Int) {
-        volumeRecorder.calibrationOffset = value
+        calibrationOffset = value
     }
 
     fun confirmCalibration() {
         stopRecording()
+
     }
 }

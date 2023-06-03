@@ -12,4 +12,6 @@
     <string name="calibration_text">-the measurements made by this app are only approximations of the volume level\n\n -the microphone in mobile devices is not suitable for accurate measurements - specialized equipment is needed for this\n\n -before first use, the app needs to be calibrated - this is ideally done using certified volume measuring device\n\n -however for simple estimation of sound level, the app can be calibrated in following way:</string>
     <string name="calibration_offset">Calibration offset</string>
     <string name="confirm">Confirm</string>
+    <string name="calibration_key">calibration_key</string>
+    <string name="first_start_key">first_start_key</string>
 </resources>
