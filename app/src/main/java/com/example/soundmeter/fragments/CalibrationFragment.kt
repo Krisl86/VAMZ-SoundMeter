@@ -36,6 +36,11 @@ class CalibrationFragment : Fragment() {
 
         binding.confirmCalibrationButton.setOnClickListener {
             viewModel.confirmCalibration()
+            val mainFragment = MainFragment()
+            val fm = fragmentManager
+            val ft = fm?.beginTransaction()
+            ft?.replace(R.id.calibrationFragment, mainFragment)
+            ft?.commit()
         }
     }
 }

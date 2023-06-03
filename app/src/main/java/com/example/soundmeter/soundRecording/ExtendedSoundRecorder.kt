@@ -16,6 +16,7 @@ class VolumeRecorder {
 
     companion object {
         const val defaultRefreshRate = 0.5f
+        var calibrationOffset = 0
     }
 
     private val recorder = SoundRecorder()
@@ -40,6 +41,7 @@ class VolumeRecorder {
         get() = recorder.calibrationOffset
         set(value) {
             recorder.calibrationOffset = value
+            VolumeRecorder.calibrationOffset = value
         }
 
     var decibels = 0
@@ -52,6 +54,9 @@ class VolumeRecorder {
     val noiseRefStringChanged = Event<String>()
     val decibelsChanged = Event<Int>()
 
+    init {
+        calibrationOffset = VolumeRecorder.calibrationOffset
+    }
 
     fun switchRecording() {
         if (recordingState == RecordingState.STARTED) {
