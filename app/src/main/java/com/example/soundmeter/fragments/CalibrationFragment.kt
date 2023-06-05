@@ -28,12 +28,12 @@ class CalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
         if (!preferences!!.getBoolean(getString(R.string.first_start_key), true))
             loadMainFragment()
-
-        binding.vm = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.adjustCalibrationSlider.addOnChangeListener { _, value, _ ->
             viewModel.updateCalibrationValue(value.toInt())
@@ -42,13 +42,11 @@ class CalibrationFragment : Fragment() {
         binding.confirmCalibrationButton.setOnClickListener {
             viewModel.confirmCalibration()
 
-
             with (preferences.edit()) {
                 putInt(getString(R.string.calibration_key), viewModel.calibrationOffset)
                 putBoolean(getString(R.string.first_start_key), false)
                 apply()
             }
-
             loadMainFragment()
         }
     }

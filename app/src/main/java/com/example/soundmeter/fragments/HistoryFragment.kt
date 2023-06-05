@@ -32,11 +32,9 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = listOf(Entry(0f, 0f), Entry(1f, 1f), Entry(2f, 2f))
-        val dataset = LineDataSet(data, "Nejake data lol")
-        val linedata = LineData(dataset)
-        binding.testChart.data = linedata
-        binding.testChart.invalidate()
+        viewModel.dataAdded += {
+            binding.testChart.data = viewModel.lineData
+            binding.testChart.invalidate()}
     }
 
 }
