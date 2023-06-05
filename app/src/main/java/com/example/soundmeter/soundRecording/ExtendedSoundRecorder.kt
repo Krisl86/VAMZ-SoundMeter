@@ -17,6 +17,10 @@ class VolumeRecorder {
     companion object {
         const val defaultRefreshRate = 0.5f
         var calibrationOffset = 0
+
+        private val instance = VolumeRecorder()
+        val Instance
+            get() = instance
     }
 
     private val recorder = SoundRecorder()

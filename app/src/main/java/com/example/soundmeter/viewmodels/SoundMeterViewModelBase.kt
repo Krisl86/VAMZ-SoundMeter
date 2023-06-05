@@ -7,7 +7,7 @@ import com.example.soundmeter.soundRecording.VolumeRecorder
 
 abstract class SoundMeterViewModelBase : ViewModel() {
 
-    protected val volumeRecorder = VolumeRecorder()
+    protected val volumeRecorder = VolumeRecorder.Instance
 
     protected var _decibels = MutableLiveData(0)
     val decibels: LiveData<Int>

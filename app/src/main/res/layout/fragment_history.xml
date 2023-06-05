@@ -8,16 +8,15 @@
             type="com.example.soundmeter.viewmodels.HistoryViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.HistoryFragment">
 
-        <TextView
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/testChart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"
-            android:textSize="24sp"/>
-
-    </FrameLayout>
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </layout>
