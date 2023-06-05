@@ -30,9 +30,7 @@ class CalibrationFragment : Fragment() {
 
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
         if (!preferences!!.getBoolean(getString(R.string.first_start_key), true))
-        {
             loadMainFragment()
-        }
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
@@ -59,7 +57,7 @@ class CalibrationFragment : Fragment() {
         val mainFragment = MainFragment()
         val fm = fragmentManager
         val ft = fm?.beginTransaction()
-        ft?.replace(R.id.calibrationFragment, mainFragment)
+        ft?.replace(R.id.fragmentContainerView, mainFragment)
         ft?.commit()
     }
 }
