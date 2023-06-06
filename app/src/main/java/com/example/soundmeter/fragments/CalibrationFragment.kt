@@ -35,9 +35,6 @@ class CalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.vm = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-
         val mainActivity = activity as MainActivity
 
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
@@ -45,6 +42,9 @@ class CalibrationFragment : Fragment() {
             mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
             return
         }
+
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.switchRecording()
 

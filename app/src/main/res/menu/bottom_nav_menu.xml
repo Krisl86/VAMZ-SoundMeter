@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/historyMenuItem"
-        android:title="History"/>
+        android:icon="@drawable/graph_action_icon"
+        android:title="@string/chart"/>
     <item
         android:id="@+id/mainMenuItem"
-        android:title="Main Page"/>
+        android:icon="@drawable/home_action_icon"
+        android:title="@string/main_page"/>
     <item
         android:id="@+id/otherMenuItem"
         android:title="Other"/>
