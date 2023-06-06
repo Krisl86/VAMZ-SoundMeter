@@ -46,7 +46,9 @@ class CalibrationFragment : Fragment() {
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.switchRecording()
+        binding.startRecordingButton.setOnClickListener {
+            viewModel.startRecording()
+        }
 
         binding.adjustCalibrationSlider.addOnChangeListener { _, value, _ ->
             viewModel.updateCalibrationValue(value.toInt())
