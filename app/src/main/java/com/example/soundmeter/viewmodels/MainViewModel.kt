@@ -8,7 +8,7 @@ import com.example.soundmeter.soundRecording.VolumeRecorder
 
 class MainViewModel : SoundMeterViewModelBase() {
 
-    private var _noiseRefString = MutableLiveData(NoiseReference.WHISPER.description)
+    private var _noiseRefString = MutableLiveData("")
     val noiseRefString: LiveData<String>
         get() = _noiseRefString
 

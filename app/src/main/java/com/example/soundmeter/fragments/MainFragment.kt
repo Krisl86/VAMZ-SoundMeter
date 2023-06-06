@@ -22,26 +22,27 @@ const val KEY_RATE_ENABLED = "key_rate_enabled"
 
 class MainFragment : BundleStateFragment() {
 
-    private var binding: FragmentMainBinding? = null
+    private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
     override fun saveState() {
-        if (binding != null) {
-            state.putBoolean(KEY_START_ENABLED, binding!!.startButton.isEnabled)
-            state.putBoolean(KEY_PAUSE_ENABLED, binding!!.pauseButton.isEnabled)
-            state.putBoolean(KEY_STOP_ENABLED, binding!!.stopButton.isEnabled)
-            state.putBoolean(KEY_SAVE_ENABLED, binding!!.saveRecordingCheckBox.isEnabled)
-            state.putBoolean(KEY_RATE_ENABLED, binding!!.refreshRateSlider.isEnabled)
-        }
+        state.putBoolean(KEY_START_ENABLED, binding.startButton.isEnabled)
+        state.putBoolean(KEY_PAUSE_ENABLED, binding.pauseButton.isEnabled)
+        state.putBoolean(KEY_STOP_ENABLED, binding.stopButton.isEnabled)
+        state.putBoolean(KEY_SAVE_ENABLED, binding.saveRecordingCheckBox.isEnabled)
+        state.putBoolean(KEY_RATE_ENABLED, binding.refreshRateSlider.isEnabled)
     }
 
     override fun loadState() {
-        if (binding != null) {
-            binding!!.startButton.isEnabled = state.getBoolean(KEY_START_ENABLED)
-            binding!!.pauseButton.isEnabled = state.getBoolean(KEY_PAUSE_ENABLED)
-            binding!!.stopButton.isEnabled = state.getBoolean(KEY_STOP_ENABLED)
-            binding!!.saveRecordingCheckBox.isEnabled = state.getBoolean(KEY_SAVE_ENABLED)
-            binding!!.refreshRateSlider.isEnabled = state.getBoolean(KEY_RATE_ENABLED)
-        }
+        binding.startButton.isEnabled = state.getBoolean(KEY_START_ENABLED)
+        binding.pauseButton.isEnabled = state.getBoolean(KEY_PAUSE_ENABLED)
+        binding.stopButton.isEnabled = state.getBoolean(KEY_STOP_ENABLED)
+        binding.saveRecordingCheckBox.isEnabled = state.getBoolean(KEY_SAVE_ENABLED)
+        binding.refreshRateSlider.isEnabled = state.getBoolean(KEY_RATE_ENABLED)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        saveState()
     }
 
     override fun onCreateView(
@@ -49,16 +50,18 @@ class MainFragment : BundleStateFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
-        return binding!!.root
+        return binding.root
+
+        loadState()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding!!.vm = viewModel
-        binding!!.lifecycleOwner = viewLifecycleOwner
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        binding!!.refreshRateSlider.addOnChangeListener { _, value, _ ->
+        binding.refreshRateSlider.addOnChangeListener { _, value, _ ->
             viewModel.updateRefreshRate(value)
         }
 
@@ -66,7 +69,7 @@ class MainFragment : BundleStateFragment() {
     }
 
     private fun setupGauge() {
-        val gauge = binding!!.decibelFullGauge
+        val gauge = binding.decibelFullGauge
 
         gauge.setFormatter{ it.toInt().toString() }
         gauge.valueColor = Color.BLACK

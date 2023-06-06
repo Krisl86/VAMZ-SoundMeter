@@ -15,6 +15,7 @@ class HistoryFragment : BundleStateFragment() {
 
     private lateinit var binding: FragmentHistoryBinding
     private val viewModel: HistoryViewModel by viewModels()
+
     override fun saveState() {
     }
 

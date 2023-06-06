@@ -42,10 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setFragmentAsCurrent(fragment: BundleStateFragment) {
-        currentFragment?.saveState()
         currentFragment = fragment
-        currentFragment?.loadState()
-
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView, fragment)
             commit()

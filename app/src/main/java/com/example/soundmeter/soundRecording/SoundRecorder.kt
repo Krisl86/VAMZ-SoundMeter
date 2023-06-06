@@ -34,7 +34,7 @@ class SoundRecorder {
 
         try {
             recorder.apply {
-                setAudioSource(MediaRecorder.AudioSource.UNPROCESSED) //
+                setAudioSource(MediaRecorder.AudioSource.UNPROCESSED)
                 setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
                 setOutputFile(savePath)

@@ -18,19 +18,17 @@ class HistoryViewModel : ViewModel() {
     private val volumeRecorder = VolumeRecorder.Instance
     private val timer = Timer()
 
-    private var dataset = LineDataSet(mutableListOf(Entry(0f, 0f)), "some data or something idk")
+    private var dataset = LineDataSet(mutableListOf(Entry(0f, 0f)), "")
     var lineData = LineData(dataset)
 
     val dataAdded = Event<Int>()
     var elapsedTime = 0f
 
-//    val data = listOf(Entry(0f, 0f), Entry(1f, 1f), Entry(2f, 2f))
-//    val dataset = LineDataSet(data, "Nejake data lol")
-//    val linedata = LineData(dataset)
-
     init {
         volumeRecorder.decibelsChanged += {value -> addData(value)}
         timer.scheduleAtFixedRate(timerTask { elapsedTime += 1000 }, 0, 1000)
+
+        dataset.lineWidth = 5f
     }
 
     private fun addData(value: Int) {

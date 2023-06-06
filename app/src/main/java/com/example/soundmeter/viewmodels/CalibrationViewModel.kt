@@ -1,9 +1,6 @@
 package com.example.soundmeter.viewmodels
 
 class CalibrationViewModel : SoundMeterViewModelBase() {
-    init {
-        switchRecording()
-    }
 
     var calibrationOffset: Int
         get() = volumeRecorder.calibrationOffset

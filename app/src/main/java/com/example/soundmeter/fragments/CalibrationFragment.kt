@@ -12,6 +12,7 @@ import com.example.soundmeter.R
 import com.example.soundmeter.activities.MainActivity
 import com.example.soundmeter.databinding.FragmentCalibrationBinding
 import com.example.soundmeter.viewmodels.CalibrationViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CalibrationFragment : Fragment() {
 
@@ -23,6 +24,10 @@ class CalibrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calibration, container, false)
+
+        val navigation = (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navigation.isEnabled = false
+
         return binding.root
     }
 

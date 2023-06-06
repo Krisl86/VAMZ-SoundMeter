@@ -8,7 +8,7 @@ enum class NoiseReference(val description: String, val minValue: Double, val max
     MOTORCYCLE("Motorcycle, Boom box", 90.0, 109.0),
     CHAINSAW("Chainsaw, Leaf blower", 110.0, 119.0),
     CONCERT("Concert, Racing car", 120.0, 129.0),
-    GUN("Gun shot, Jet engine", 130.0, 140.0);
+    GUN("Gunshot, Jet engine", 130.0, 140.0);
 
     companion object {
         fun stringByValue(value: Double): String {
