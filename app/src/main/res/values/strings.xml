@@ -18,4 +18,7 @@
     <string name="calibration_is_required_before_start">Calibration is required before start</string>
     <string name="start_recording">Start Recording</string>
     <string name="calibration_guide_string">1. Click on \'Start Recording\' button\n 2. Adjust slider until shown value is correct\n 3. Click on \'Confirm\' button when done</string>
+    <string name="min_value">Min Value</string>
+    <string name="max_value">Max Value</string>
+    <string name="average_value">Average Value</string>
 </resources>

@@ -35,14 +35,6 @@ class CalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val mainActivity = activity as MainActivity
-
-        val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
-        if (!preferences!!.getBoolean(getString(R.string.first_start_key), true)) {
-            mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
-            return
-        }
-
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -56,13 +48,11 @@ class CalibrationFragment : Fragment() {
 
         binding.confirmCalibrationButton.setOnClickListener {
             viewModel.confirmCalibration()
-
-            with (preferences.edit()) {
+            with (requireActivity().getPreferences(Context.MODE_PRIVATE).edit()) {
                 putInt(getString(R.string.calibration_key), viewModel.calibrationOffset)
                 putBoolean(getString(R.string.first_start_key), false)
                 apply()
             }
-            mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
         }
     }
 }

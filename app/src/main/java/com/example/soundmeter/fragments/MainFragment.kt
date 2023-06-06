@@ -6,44 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ekn.gruzer.gaugelibrary.Range
 import com.example.soundmeter.R
 import com.example.soundmeter.databinding.FragmentMainBinding
 import com.example.soundmeter.enums.NoiseReference
-import com.example.soundmeter.utilities.BundleStateFragment
 import com.example.soundmeter.viewmodels.MainViewModel
 
-const val KEY_START_ENABLED = "key_start_enabled"
-const val KEY_PAUSE_ENABLED = "key_pause_enabled"
-const val KEY_STOP_ENABLED = "key_stop_enabled"
-const val KEY_SAVE_ENABLED = "key_save_enabled"
-const val KEY_RATE_ENABLED = "key_rate_enabled"
-
-class MainFragment : BundleStateFragment() {
+class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by viewModels()
-    override fun saveState() {
-        state.putBoolean(KEY_START_ENABLED, binding.startButton.isEnabled)
-        state.putBoolean(KEY_PAUSE_ENABLED, binding.pauseButton.isEnabled)
-        state.putBoolean(KEY_STOP_ENABLED, binding.stopButton.isEnabled)
-        state.putBoolean(KEY_SAVE_ENABLED, binding.saveRecordingCheckBox.isEnabled)
-        state.putBoolean(KEY_RATE_ENABLED, binding.refreshRateSlider.isEnabled)
-    }
-
-    override fun loadState() {
-        binding.startButton.isEnabled = state.getBoolean(KEY_START_ENABLED)
-        binding.pauseButton.isEnabled = state.getBoolean(KEY_PAUSE_ENABLED)
-        binding.stopButton.isEnabled = state.getBoolean(KEY_STOP_ENABLED)
-        binding.saveRecordingCheckBox.isEnabled = state.getBoolean(KEY_SAVE_ENABLED)
-        binding.refreshRateSlider.isEnabled = state.getBoolean(KEY_RATE_ENABLED)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        saveState()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +25,6 @@ class MainFragment : BundleStateFragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         return binding.root
-
-        loadState()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
