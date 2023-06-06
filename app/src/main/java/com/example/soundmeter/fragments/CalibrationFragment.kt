@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.soundmeter.R
@@ -26,7 +27,7 @@ class CalibrationFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calibration, container, false)
 
         val navigation = (activity as MainActivity).findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        navigation.isEnabled = false
+        navigation.isVisible = false
 
         return binding.root
     }
@@ -42,7 +43,10 @@ class CalibrationFragment : Fragment() {
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
         if (!preferences!!.getBoolean(getString(R.string.first_start_key), true)) {
             mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
+            return
         }
+
+        viewModel.switchRecording()
 
         binding.adjustCalibrationSlider.addOnChangeListener { _, value, _ ->
             viewModel.updateCalibrationValue(value.toInt())

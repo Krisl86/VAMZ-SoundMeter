@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.example.soundmeter.R
 import com.example.soundmeter.fragments.HistoryFragment
 import com.example.soundmeter.fragments.MainFragment
@@ -42,6 +43,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setFragmentAsCurrent(fragment: BundleStateFragment) {
+        findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+            .isVisible = true
+
         currentFragment = fragment
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView, fragment)
