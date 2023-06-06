@@ -55,7 +55,7 @@ class CalibrationFragment : Fragment() {
             }
 
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, (requireActivity() as MainActivity).mainFragment)
+                .replace(R.id.fragmentContainerView, MainActivity.mainFragment)
                 .commit()
         }
     }

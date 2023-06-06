@@ -18,10 +18,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    val mainFragment = MainFragment()
-    private val historyFragment = HistoryFragment()
-    private val calibrationFragment = CalibrationFragment()
-    private val infoFragment = InfoFragment()
+    companion object {
+        val mainFragment = MainFragment()
+        private val historyFragment = HistoryFragment()
+        private val calibrationFragment = CalibrationFragment()
+        private val infoFragment = InfoFragment()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
