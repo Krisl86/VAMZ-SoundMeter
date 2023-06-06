@@ -54,6 +54,8 @@ class CalibrationFragment : Fragment() {
                 apply()
             }
 
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = true
+
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, MainActivity.mainFragment)
                 .commit()

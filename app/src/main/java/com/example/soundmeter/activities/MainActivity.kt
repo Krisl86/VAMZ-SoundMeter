@@ -17,7 +17,6 @@ import com.example.soundmeter.fragments.MainFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
     companion object {
         val mainFragment = MainFragment()
         private val historyFragment = HistoryFragment()
