@@ -6,16 +6,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.example.soundmeter.R
 import com.example.soundmeter.fragments.HistoryFragment
 import com.example.soundmeter.fragments.MainFragment
+import com.example.soundmeter.utilities.BundleStateFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainFrag = MainFragment()
-    private val historyFrag = HistoryFragment()
+    val mainFragment = MainFragment()
+    val historyFragment = HistoryFragment()
+    var currentFragment: BundleStateFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,18 +30,24 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.historyMenuItem -> setFragmentAsCurrent(historyFrag)
-                R.id.mainMenuItem -> setFragmentAsCurrent(mainFrag)
-                R.id.otherMenuItem -> setFragmentAsCurrent(mainFrag)
+                R.id.historyMenuItem -> setFragmentAsCurrent(historyFragment)
+                R.id.mainMenuItem -> setFragmentAsCurrent(mainFragment)
+                R.id.otherMenuItem -> setFragmentAsCurrent(mainFragment)
             }; true
         }
 
         bottomNav.menu.findItem(R.id.mainMenuItem).isChecked = true
+
+        currentFragment = mainFragment
     }
 
-    private fun setFragmentAsCurrent(frag: Fragment) {
+    fun setFragmentAsCurrent(fragment: BundleStateFragment) {
+        currentFragment?.saveState()
+        currentFragment = fragment
+        currentFragment?.loadState()
+
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragmentContainerView, frag)
+            replace(R.id.fragmentContainerView, fragment)
             commit()
         }
     }

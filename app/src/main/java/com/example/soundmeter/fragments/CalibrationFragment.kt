@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.soundmeter.R
+import com.example.soundmeter.activities.MainActivity
 import com.example.soundmeter.databinding.FragmentCalibrationBinding
 import com.example.soundmeter.viewmodels.CalibrationViewModel
 
@@ -31,9 +32,12 @@ class CalibrationFragment : Fragment() {
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        val mainActivity = activity as MainActivity
+
         val preferences = activity?.getPreferences(Context.MODE_PRIVATE)
-        if (!preferences!!.getBoolean(getString(R.string.first_start_key), true))
-            loadMainFragment()
+        if (!preferences!!.getBoolean(getString(R.string.first_start_key), true)) {
+            mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
+        }
 
         binding.adjustCalibrationSlider.addOnChangeListener { _, value, _ ->
             viewModel.updateCalibrationValue(value.toInt())
@@ -47,15 +51,7 @@ class CalibrationFragment : Fragment() {
                 putBoolean(getString(R.string.first_start_key), false)
                 apply()
             }
-            loadMainFragment()
+            mainActivity.setFragmentAsCurrent(mainActivity.mainFragment)
         }
-    }
-
-    private fun loadMainFragment() {
-        val mainFragment = MainFragment()
-        val fm = fragmentManager
-        val ft = fm?.beginTransaction()
-        ft?.replace(R.id.fragmentContainerView, mainFragment)
-        ft?.commit()
     }
 }

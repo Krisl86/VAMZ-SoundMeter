@@ -1,8 +1,6 @@
 package com.example.soundmeter.fragments
 
-import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +8,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.example.soundmeter.R
 import com.example.soundmeter.databinding.FragmentHistoryBinding
-import com.example.soundmeter.databinding.FragmentMainBinding
+import com.example.soundmeter.utilities.BundleStateFragment
 import com.example.soundmeter.viewmodels.HistoryViewModel
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : BundleStateFragment() {
 
     private lateinit var binding: FragmentHistoryBinding
     private val viewModel: HistoryViewModel by viewModels()
+    override fun saveState() {
+    }
+
+    override fun loadState() {
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
