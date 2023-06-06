@@ -10,5 +10,6 @@
         android:title="@string/main_page"/>
     <item
         android:id="@+id/otherMenuItem"
-        android:title="Other"/>
+        android:icon="@drawable/info_action_icon"
+        android:title="@string/info"/>
 </menu>
