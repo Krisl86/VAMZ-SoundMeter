@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment
 import com.example.soundmeter.R
 import com.example.soundmeter.fragments.CalibrationFragment
 import com.example.soundmeter.fragments.HistoryFragment
+import com.example.soundmeter.fragments.InfoFragment
 import com.example.soundmeter.fragments.MainFragment
-import com.example.soundmeter.utilities.BundleStateFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     val mainFragment = MainFragment()
     val historyFragment = HistoryFragment()
     val calibrationFragment = CalibrationFragment()
+    val infoFragment = InfoFragment()
 
     var currentFragment: Fragment? = null
 
@@ -29,13 +30,11 @@ class MainActivity : AppCompatActivity() {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
-            && ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE)
-            != PackageManager.PERMISSION_GRANTED
             && ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED
             && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
         }
 
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.historyMenuItem -> setFragmentAsCurrent(historyFragment)
                 R.id.mainMenuItem -> setFragmentAsCurrent(mainFragment)
-                R.id.otherMenuItem -> setFragmentAsCurrent(mainFragment)
+                R.id.infoMenuItem -> setFragmentAsCurrent(infoFragment)
             }; true
         }
 

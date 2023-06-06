@@ -9,7 +9,7 @@
         android:icon="@drawable/home_action_icon"
         android:title="@string/main_page"/>
     <item
-        android:id="@+id/otherMenuItem"
+        android:id="@+id/infoMenuItem"
         android:icon="@drawable/info_action_icon"
         android:title="@string/info"/>
 </menu>
