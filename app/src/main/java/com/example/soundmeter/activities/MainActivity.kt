@@ -18,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     companion object {
+        private var currentFragment: Fragment? = null
+
         val mainFragment = MainFragment()
         private val historyFragment = HistoryFragment()
         private val calibrationFragment = CalibrationFragment()
@@ -33,10 +35,12 @@ class MainActivity : AppCompatActivity() {
         initStartFragment()
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, fragment)
             .commit()
+
+        currentFragment = fragment
     }
 
     private fun checkPermissions() {
@@ -71,6 +75,6 @@ class MainActivity : AppCompatActivity() {
             findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = false
         }
         else
-            replaceFragment(mainFragment)
+            replaceFragment(currentFragment ?: mainFragment)
     }
 }

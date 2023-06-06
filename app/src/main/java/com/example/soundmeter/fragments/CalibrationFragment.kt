@@ -35,6 +35,8 @@ class CalibrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val activity = requireActivity() as MainActivity
+
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -48,17 +50,14 @@ class CalibrationFragment : Fragment() {
 
         binding.confirmCalibrationButton.setOnClickListener {
             viewModel.confirmCalibration()
-            with (requireActivity().getPreferences(Context.MODE_PRIVATE).edit()) {
+            with (activity.getPreferences(Context.MODE_PRIVATE).edit()) {
                 putInt(getString(R.string.calibration_key), viewModel.calibrationOffset)
                 putBoolean(getString(R.string.first_start_key), false)
                 apply()
             }
 
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = true
-
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, MainActivity.mainFragment)
-                .commit()
+            activity.findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = true
+            activity.replaceFragment(MainActivity.mainFragment)
         }
     }
 }
