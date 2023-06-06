@@ -53,6 +53,10 @@ class CalibrationFragment : Fragment() {
                 putBoolean(getString(R.string.first_start_key), false)
                 apply()
             }
+
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, (requireActivity() as MainActivity).mainFragment)
+                .commit()
         }
     }
 }

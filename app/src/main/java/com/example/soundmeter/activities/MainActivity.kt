@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.soundmeter.R
 import com.example.soundmeter.fragments.CalibrationFragment
@@ -17,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainFragment = MainFragment()
+    val mainFragment = MainFragment()
     private val historyFragment = HistoryFragment()
     private val calibrationFragment = CalibrationFragment()
     private val infoFragment = InfoFragment()
@@ -64,8 +65,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStartFragment() {
         val preferences = getPreferences(Context.MODE_PRIVATE)
-        if (preferences!!.getBoolean(getString(R.string.first_start_key), true))
+        if (preferences!!.getBoolean(getString(R.string.first_start_key), true)) {
             replaceFragment(calibrationFragment)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = false
+        }
         else
             replaceFragment(mainFragment)
     }
