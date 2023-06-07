@@ -30,12 +30,29 @@ class HistoryFragment : Fragment() {
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.dataAdded += {
-            binding.testChart.data = viewModel.lineData
-            binding.testChart.invalidate()
-        }
+        setupChart()
+    }
 
-        binding.testChart.invalidate()
+    private fun setupChart() {
+        val chart = binding.testChart
+        if (chart != null) {
+            chart.data = viewModel.lineData
+
+            viewModel.dataAdded += {
+                chart.notifyDataSetChanged()
+                chart.invalidate()
+            }
+
+            chart.apply {
+                setDrawGridBackground(true)
+                axisRight.isEnabled = false
+                axisLeft.apply {
+                    axisMinimum = 0f
+                    axisMaximum = 140f
+                }
+            }
+
+        }
     }
 
 }

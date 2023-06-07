@@ -3,7 +3,7 @@
     <item
         android:id="@+id/historyMenuItem"
         android:icon="@drawable/graph_action_icon"
-        android:title="@string/chart"/>
+        android:title="@string/chart" />
     <item
         android:id="@+id/mainMenuItem"
         android:icon="@drawable/home_action_icon"

@@ -14,6 +14,7 @@ import com.example.soundmeter.fragments.CalibrationFragment
 import com.example.soundmeter.fragments.HistoryFragment
 import com.example.soundmeter.fragments.InfoFragment
 import com.example.soundmeter.fragments.MainFragment
+import com.example.soundmeter.soundRecording.VolumeRecorder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         checkPermissions()
+        initVolumeRecorderOffset()
+
         initBottomNavigation()
         initStartFragment()
     }
@@ -76,5 +79,10 @@ class MainActivity : AppCompatActivity() {
         }
         else
             replaceFragment(currentFragment ?: mainFragment)
+    }
+
+    private fun initVolumeRecorderOffset() {
+        VolumeRecorder.Instance.calibrationOffset = getPreferences(Context.MODE_PRIVATE)
+            .getInt(getString(R.string.calibration_key), VolumeRecorder.defaultCalibrationOffset)
     }
 }

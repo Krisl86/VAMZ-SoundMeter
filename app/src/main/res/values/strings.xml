@@ -22,4 +22,5 @@
     <string name="max_value">Max Value</string>
     <string name="average_value">Average Value</string>
     <string name="current_value">Current Value</string>
+    <string name="to_display_live_graph_switch_to_landscape_orientation">To display Live Chart, switch to landscape orientation</string>
 </resources>
