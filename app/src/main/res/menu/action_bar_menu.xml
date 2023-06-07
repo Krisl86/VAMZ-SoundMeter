@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/startRecordingActionBarMenuItem"
+        android:title="@string/start"
+        android:icon="@drawable/play_action_bar_icon_light"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/pauseRecordingActionBarMenuItem"
+        android:title="@string/pause"
+        android:icon="@drawable/pause_action_bar_icon"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/stopRecordingActionBarMenuItem"
+        android:title="@string/stop"
+        android:icon="@drawable/stop_action_bar_icon"
+        app:showAsAction="ifRoom"/>
+</menu>

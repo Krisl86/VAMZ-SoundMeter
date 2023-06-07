@@ -16,7 +16,8 @@
         android:elevation="4dp"
         android:background="@color/design_default_color_primary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:titleTextColor="@color/white"/>
+        app:titleTextColor="@color/white"
+        app:menu="@menu/action_bar_menu"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
