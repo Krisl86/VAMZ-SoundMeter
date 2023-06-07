@@ -11,22 +11,20 @@ import kotlin.concurrent.timerTask
 
 class HistoryViewModel : ViewModel() {
 
-    private val chartLabel = "Volume Information"
+    private val chartLabel = "Volume (db)"
 
     private val volumeRecorder = VolumeRecorder.Instance
     private val timer = Timer()
 
-    private var dataset = LineDataSet(mutableListOf<Entry>(), chartLabel)
-    var lineData = LineData(dataset)
+    var lineDataSet = LineDataSet(mutableListOf<Entry>(), chartLabel)
+    var lineData = LineData(lineDataSet)
 
     val dataAdded = Event<Int>()
     var elapsedTime = 0f
 
     init {
         volumeRecorder.decibelsChanged += {value -> addData(value)}
-        timer.scheduleAtFixedRate(timerTask { elapsedTime += 1000 }, 0, 1000)
-
-        dataset.lineWidth = 5f
+        timer.scheduleAtFixedRate(timerTask { elapsedTime += 100 }, 0, 100)
     }
 
     private fun addData(value: Int) {
