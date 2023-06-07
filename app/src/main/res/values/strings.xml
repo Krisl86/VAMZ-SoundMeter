@@ -21,4 +21,5 @@
     <string name="min_value">Min Value</string>
     <string name="max_value">Max Value</string>
     <string name="average_value">Average Value</string>
+    <string name="current_value">Current Value</string>
 </resources>
