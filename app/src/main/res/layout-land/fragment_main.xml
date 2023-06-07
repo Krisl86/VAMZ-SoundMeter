@@ -54,7 +54,6 @@
                 android:text="@string/start"
                 android:onClick="@{() -> vm.switchRecording()}"
                 android:enabled="@{vm.startEnabled}"
-                android:layout_margin="10dp"
                 android:textSize="18sp"/>
 
             <Button
@@ -64,7 +63,6 @@
                 android:text="@string/pause"
                 android:onClick="@{() -> vm.switchRecording()}"
                 android:enabled="@{vm.pauseEnabled}"
-                android:layout_margin="10dp"
                 android:textSize="18sp"/>
 
             <Button
@@ -74,7 +72,6 @@
                 android:text="@string/stop"
                 android:onClick="@{() -> vm.stopRecording()}"
                 android:enabled="@{vm.stopEnabled}"
-                android:layout_margin="10dp"
                 android:textSize="18sp"/>
 
             <CheckBox
