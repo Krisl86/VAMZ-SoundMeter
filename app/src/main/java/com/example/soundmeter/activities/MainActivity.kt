@@ -31,9 +31,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(findViewById(R.id.appToolbar))
+        supportActionBar.apply {
+
+        }
+
         checkPermissions()
         initVolumeRecorderOffset()
-
         initBottomNavigation()
         initStartFragment()
     }
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainerView, fragment)
             .commit()
 
+        supportActionBar?.title = titleByFragment(fragment)
         currentFragment = fragment
     }
 
@@ -84,5 +89,15 @@ class MainActivity : AppCompatActivity() {
     private fun initVolumeRecorderOffset() {
         VolumeRecorder.Instance.calibrationOffset = getPreferences(Context.MODE_PRIVATE)
             .getInt(getString(R.string.calibration_key), VolumeRecorder.defaultCalibrationOffset)
+    }
+
+    private fun titleByFragment(fragment: Fragment): String {
+        return when (fragment) {
+            is MainFragment -> getString(R.string.main_controls)
+            is CalibrationFragment -> getString(R.string.app_calibration)
+            is HistoryFragment -> getString(R.string.volume_live_chart)
+            is InfoFragment -> getString(R.string.volume_statistics)
+            else -> getString(R.string.volume_meter_app)
+        }
     }
 }

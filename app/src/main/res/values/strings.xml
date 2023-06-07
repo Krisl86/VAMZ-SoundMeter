@@ -23,4 +23,9 @@
     <string name="average_value">Average Value</string>
     <string name="current_value">Current Value</string>
     <string name="to_display_live_graph_switch_to_landscape_orientation">To display Live Chart, switch to landscape orientation</string>
+    <string name="main_controls">Main Controls</string>
+    <string name="app_calibration">App Calibration</string>
+    <string name="volume_live_chart">Volume Live Chart</string>
+    <string name="volume_statistics">Volume Statistics</string>
+    <string name="volume_meter_app">Volume Meter App</string>
 </resources>
