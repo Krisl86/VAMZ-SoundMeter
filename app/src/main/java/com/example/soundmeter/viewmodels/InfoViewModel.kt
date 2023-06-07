@@ -47,6 +47,11 @@ class InfoViewModel : ViewModel() {
 
         values.add(value)
         _averageValue.postValue(values.average().toInt())
+
+        if (values.count() > 100) { // to limit the size of the list
+            for (i in 0..10)
+                values.removeAt(i)
+        }
     }
 
     private fun resetValues() {
