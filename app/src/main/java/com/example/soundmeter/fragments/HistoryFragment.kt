@@ -32,7 +32,10 @@ class HistoryFragment : Fragment() {
 
         viewModel.dataAdded += {
             binding.testChart.data = viewModel.lineData
-            binding.testChart.invalidate()}
+            binding.testChart.invalidate()
+        }
+
+        binding.testChart.invalidate()
     }
 
 }

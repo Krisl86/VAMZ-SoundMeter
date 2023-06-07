@@ -5,15 +5,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.soundmeter.soundRecording.VolumeRecorder
 
+const val defaultMin = 9999
+const val defaultMax = -9999
+
 class InfoViewModel : ViewModel() {
 
     private val volumeRecorder = VolumeRecorder.Instance
 
-    private var _maxValue = MutableLiveData(-9999)
+    private var _maxValue = MutableLiveData(defaultMax)
     val maxValue: LiveData<Int>
         get() = _maxValue
 
-    private var _currentValue = MutableLiveData(0)
+    private var _currentValue = MutableLiveData(defaultMin)
     val currentValue: LiveData<Int>
         get() = _currentValue
 
@@ -28,7 +31,8 @@ class InfoViewModel : ViewModel() {
     private val values = mutableListOf<Int>()
 
     init {
-        volumeRecorder.decibelsChanged += {value -> recalculateValues(value) }
+        volumeRecorder.decibelsChanged += { value -> recalculateValues(value) }
+        volumeRecorder.recordingStopped += { resetValues() }
     }
 
     private fun recalculateValues(value: Int) {
@@ -43,5 +47,13 @@ class InfoViewModel : ViewModel() {
 
         values.add(value)
         _averageValue.postValue(values.average().toInt())
+    }
+
+    private fun resetValues() {
+        _averageValue.postValue(0)
+        values.clear()
+        _currentValue.postValue(0)
+        _minValue.postValue(defaultMin)
+        _maxValue.postValue(defaultMax)
     }
 }

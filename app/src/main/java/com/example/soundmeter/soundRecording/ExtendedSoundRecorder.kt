@@ -57,6 +57,7 @@ class VolumeRecorder {
     val recordingStateChanged = Event<RecordingState>()
     val noiseRefStringChanged = Event<String>()
     val decibelsChanged = Event<Int>()
+    val recordingStopped = Event<Int>()
 
     init {
         calibrationOffset = VolumeRecorder.calibrationOffset
@@ -76,10 +77,11 @@ class VolumeRecorder {
     fun stopRecording() {
         if (recordingState == RecordingState.STARTED || recordingState == RecordingState.PAUSED) {
             recorder.stop()
-            decibels = 0
             noiseRefString = NoiseReference.stringByValue(0.0)
             timer.cancel()
             recordingState = RecordingState.STOPPED
+            recordingStopped.invoke(decibels)
+            decibels = 0
         }
     }
 
