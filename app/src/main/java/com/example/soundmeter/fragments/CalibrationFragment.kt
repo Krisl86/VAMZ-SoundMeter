@@ -57,7 +57,8 @@ class CalibrationFragment : Fragment() {
             }
 
             activity.findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = true
-            activity.replaceFragment(MainActivity.mainFragment)
+            activity.supportActionBar?.show()
+            activity.setFragment(MainActivity.mainFragment)
         }
     }
 }

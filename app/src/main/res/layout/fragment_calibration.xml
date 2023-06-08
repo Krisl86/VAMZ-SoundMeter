@@ -90,7 +90,7 @@
                 android:id="@+id/adjustCalibrationSlider"
                 android:valueFrom="-40"
                 android:valueTo="160"
-                android:value="0"
+                android:value="80"
                 android:stepSize="2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

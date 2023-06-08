@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         initStartFragment()
     }
 
-    fun replaceFragment(fragment: Fragment) {
+    fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, fragment)
             .commit()
@@ -72,9 +72,9 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.historyMenuItem -> replaceFragment(historyFragment)
-                R.id.mainMenuItem -> replaceFragment(mainFragment)
-                R.id.infoMenuItem -> replaceFragment(infoFragment)
+                R.id.historyMenuItem -> setFragment(historyFragment)
+                R.id.mainMenuItem -> setFragment(mainFragment)
+                R.id.infoMenuItem -> setFragment(infoFragment)
             }; true
         }
 
@@ -84,11 +84,12 @@ class MainActivity : AppCompatActivity() {
     private fun initStartFragment() {
         val preferences = getPreferences(Context.MODE_PRIVATE)
         if (preferences!!.getBoolean(getString(R.string.first_start_key), true)) {
-            replaceFragment(calibrationFragment)
+            setFragment(calibrationFragment)
             findViewById<BottomNavigationView>(R.id.bottomNavigationView).isVisible = false
+            supportActionBar?.hide()
         }
         else
-            replaceFragment(currentFragment ?: mainFragment)
+            setFragment(currentFragment ?: mainFragment)
     }
 
     private fun initVolumeRecorderOffset() {

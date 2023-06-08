@@ -2,7 +2,6 @@ package com.example.soundmeter.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.soundmeter.enums.NoiseReference
 import com.example.soundmeter.soundRecording.RecordingState
 import com.example.soundmeter.soundRecording.VolumeRecorder
 
