@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,6 +16,7 @@ import com.example.soundmeter.fragments.CalibrationFragment
 import com.example.soundmeter.fragments.HistoryFragment
 import com.example.soundmeter.fragments.InfoFragment
 import com.example.soundmeter.fragments.MainFragment
+import com.example.soundmeter.soundRecording.RecordingState
 import com.example.soundmeter.soundRecording.VolumeRecorder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -28,14 +30,16 @@ class MainActivity : AppCompatActivity() {
         private val infoFragment = InfoFragment()
     }
 
+    private var startActionBarMenuItem: MenuItem? = null
+    private var pauseActionBarMenuItem: MenuItem? = null
+    private var stopActionBarMenuItem: MenuItem? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.appToolbar))
-        supportActionBar.apply {
-
-        }
+        VolumeRecorder.Instance.recordingStateChanged += ::updateActionBarItemVisibilities
 
         checkPermissions()
         initVolumeRecorderOffset()
@@ -104,6 +108,36 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_menu, menu)
+        startActionBarMenuItem = menu?.findItem(R.id.startRecordingActionBarMenuItem)!!
+        pauseActionBarMenuItem = menu.findItem(R.id.pauseRecordingActionBarMenuItem)!!
+        stopActionBarMenuItem = menu.findItem(R.id.stopRecordingActionBarMenuItem)!!
+        updateActionBarItemVisibilities(VolumeRecorder.Instance.recordingState)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.startRecordingActionBarMenuItem -> { VolumeRecorder.Instance.switchRecording(); true }
+            R.id.pauseRecordingActionBarMenuItem -> { VolumeRecorder.Instance.switchRecording(); true }
+            R.id.stopRecordingActionBarMenuItem -> { VolumeRecorder.Instance.stopRecording(); true }
+            else -> false
+        }
+    }
+
+    private fun updateActionBarItemVisibilities(recordingState: RecordingState) {
+        when (recordingState) {
+            RecordingState.STARTED -> {
+                startActionBarMenuItem?.isEnabled = false; pauseActionBarMenuItem?.isEnabled = true; stopActionBarMenuItem?.isEnabled = true
+                startActionBarMenuItem?.icon?.alpha = 120; pauseActionBarMenuItem?.icon?.alpha = 255; stopActionBarMenuItem?.icon?.alpha = 255
+            }
+            RecordingState.PAUSED -> {
+                startActionBarMenuItem?.isEnabled = true; pauseActionBarMenuItem?.isEnabled = false; stopActionBarMenuItem?.isEnabled = true
+                startActionBarMenuItem?.icon?.alpha = 255; pauseActionBarMenuItem?.icon?.alpha = 120; stopActionBarMenuItem?.icon?.alpha = 255
+            }
+            RecordingState.STOPPED -> {
+                startActionBarMenuItem?.isEnabled = true; pauseActionBarMenuItem?.isEnabled = false; stopActionBarMenuItem?.isEnabled = false
+                startActionBarMenuItem?.icon?.alpha = 255; pauseActionBarMenuItem?.icon?.alpha = 120; stopActionBarMenuItem?.icon?.alpha = 120
+            }
+        }
     }
 }

@@ -34,7 +34,7 @@ class VolumeRecorder {
             noiseRefStringChanged.invoke(value)
         }
 
-    private var recordingState = RecordingState.STOPPED
+    var recordingState = RecordingState.STOPPED
         private set(value) {
             field = value
             recordingStateChanged.invoke(value)

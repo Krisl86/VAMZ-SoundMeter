@@ -23,7 +23,7 @@ class HistoryViewModel : ViewModel() {
     var elapsedTime = 0f
 
     init {
-        volumeRecorder.decibelsChanged += {value -> addData(value)}
+        volumeRecorder.decibelsChanged += ::addData
         timer.scheduleAtFixedRate(timerTask { elapsedTime += 100 }, 0, 100)
     }
 

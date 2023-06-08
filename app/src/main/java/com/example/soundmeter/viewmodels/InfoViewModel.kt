@@ -31,7 +31,7 @@ class InfoViewModel : ViewModel() {
     private val values = mutableListOf<Int>()
 
     init {
-        volumeRecorder.decibelsChanged += { value -> recalculateValues(value) }
+        volumeRecorder.decibelsChanged += ::recalculateValues
         volumeRecorder.recordingStopped += { resetValues() }
     }
 
