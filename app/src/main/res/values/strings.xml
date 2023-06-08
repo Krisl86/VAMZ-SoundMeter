@@ -11,7 +11,6 @@
     <string name="confirm">Confirm</string>
     <string name="calibration_key">calibration_key</string>
     <string name="first_start_key">first_start_key</string>
-    <string name="before_first_use_calibration_is_needed">Before first use, calibration is needed</string>
     <string name="chart">Live Chart</string>
     <string name="main_page">Control Page</string>
     <string name="info">Statistics</string>
