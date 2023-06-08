@@ -9,6 +9,10 @@ class CalibrationViewModel : SoundMeterViewModelBase() {
     val startRecordingEnabled: LiveData<Boolean>
         get() = _startRecordingEnabled
 
+    private var _confirmEnabled = MutableLiveData(false)
+    val confirmEnabled: LiveData<Boolean>
+        get() = _confirmEnabled
+
     var calibrationOffset: Int
         get() = volumeRecorder.calibrationOffset
         set(value) {
@@ -18,6 +22,7 @@ class CalibrationViewModel : SoundMeterViewModelBase() {
     fun startRecording() {
         switchRecording()
         _startRecordingEnabled.value = false
+        _confirmEnabled.value = true
     }
 
     fun updateCalibrationValue(value: Int) {

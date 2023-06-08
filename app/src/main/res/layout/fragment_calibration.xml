@@ -107,6 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/adjustCalibrationSlider"
                 android:text="@string/confirm"
+                android:enabled="@{vm.confirmEnabled}"
                 android:textSize="20sp"
                 android:layout_marginBottom="20dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
