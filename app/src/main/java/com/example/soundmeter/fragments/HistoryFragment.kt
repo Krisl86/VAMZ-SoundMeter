@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.soundmeter.R
+import com.example.soundmeter.chartstyles.HistoryLineChartStyle
 import com.example.soundmeter.databinding.FragmentHistoryBinding
 import com.example.soundmeter.viewmodels.HistoryViewModel
 import com.github.mikephil.charting.components.XAxis
@@ -44,34 +45,18 @@ class HistoryFragment : Fragment() {
 
             viewModel.dataAdded += {
                 chart.xAxis.apply {
-                    axisMinimum = ((viewModel.elapsedTime / 1000).toInt() - 10).toFloat()
-                    axisMaximum = ((viewModel.elapsedTime / 1000).toInt() + 10).toFloat()
+                    axisMinimum = if (viewModel.elapsedTime / 1000 < 10)
+                        1f
+                    else
+                        ((viewModel.elapsedTime / 1000).toInt() - 10).toFloat()
+
+                    axisMaximum = ((viewModel.elapsedTime / 1000).toInt() + 8).toFloat()
                 }
                 chart.notifyDataSetChanged()
                 chart.invalidate()
             }
 
-            chart.apply {
-                setDrawGridBackground(true)
-                axisRight.isEnabled = false
-
-                axisLeft.apply {
-                    axisMinimum = 20f
-                    axisMaximum = 100f
-                    spaceTop = 10f
-                }
-
-                xAxis.apply {
-                    isGranularityEnabled = false
-                    setDrawGridLines(false)
-                    setDrawAxisLine(false)
-                    position = XAxis.XAxisPosition.BOTTOM
-                }
-
-                setScaleEnabled(false)
-                setPinchZoom(false)
-                description = null
-            }
+            HistoryLineChartStyle().style(chart)
         }
     }
 
