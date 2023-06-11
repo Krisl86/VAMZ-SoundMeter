@@ -27,4 +27,5 @@
     <string name="volume_live_chart">Volume Live Chart</string>
     <string name="volume_statistics">Volume Statistics</string>
     <string name="volume_meter_app">Volume Meter App</string>
+    <string name="notifications">Notifications</string>
 </resources>

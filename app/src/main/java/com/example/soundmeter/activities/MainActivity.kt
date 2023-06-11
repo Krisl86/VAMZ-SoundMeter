@@ -16,6 +16,7 @@ import com.example.soundmeter.fragments.CalibrationFragment
 import com.example.soundmeter.fragments.HistoryFragment
 import com.example.soundmeter.fragments.InfoFragment
 import com.example.soundmeter.fragments.MainFragment
+import com.example.soundmeter.fragments.NotificationFragment
 import com.example.soundmeter.soundRecording.RecordingState
 import com.example.soundmeter.soundRecording.VolumeRecorder
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         private val historyFragment = HistoryFragment()
         private val calibrationFragment = CalibrationFragment()
         private val infoFragment = InfoFragment()
+        private val notificationFragment = NotificationFragment()
     }
 
     private var startActionBarMenuItem: MenuItem? = null
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.historyMenuItem -> setFragment(historyFragment)
                 R.id.mainMenuItem -> setFragment(mainFragment)
                 R.id.infoMenuItem -> setFragment(infoFragment)
+                R.id.notificationMenuItem -> setFragment(notificationFragment)
             }; true
         }
 
@@ -103,6 +106,7 @@ class MainActivity : AppCompatActivity() {
             is CalibrationFragment -> getString(R.string.app_calibration)
             is HistoryFragment -> getString(R.string.volume_live_chart)
             is InfoFragment -> getString(R.string.volume_statistics)
+            is NotificationFragment -> getString(R.string.notifications)
             else -> getString(R.string.volume_meter_app)
         }
     }
