@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
         gauge.setFormatter{ it.toInt().toString() }
         gauge.valueColor = Color.BLACK
         gauge.minValue = 0.0
-        gauge.maxValue = 100.0
+        gauge.maxValue = 120.0
 
         val r1 = Range()
         r1.color = Color.parseColor("#0cad4d")

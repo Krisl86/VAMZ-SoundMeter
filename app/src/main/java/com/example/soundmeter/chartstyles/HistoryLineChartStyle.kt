@@ -16,7 +16,7 @@ class HistoryLineChartStyle(val context: Context) {
 
             axisLeft.apply {
                 axisMinimum = 20f
-                axisMaximum = 100f
+                axisMaximum = 120f
                 spaceTop = 10f
             }
 
