@@ -8,12 +8,181 @@
             type="com.example.soundmeter.viewmodels.NotificationViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.NotificationFragment">
+        tools:context=".fragments.NotificationFragment"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send_notification_when"
+            android:textSize="30sp"
+            android:textAlignment="center"/>
+
+        <GridLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:rowCount="4"
+            android:columnCount="4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maximum_value_is_above"
+                android:textSize="18sp"
+                android:layout_column="0"/>
+            <EditText
+                android:id="@+id/maxValAboveEditText"
+                android:layout_width="48dp"
+                android:maxWidth="48dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/db"
+                android:textSize="18sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="2"
+                android:labelFor="@id/maxValAboveEditText"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_column="3"/>
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average_value_is"
+                    android:textSize="18sp"/>
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textOn="@string/above"
+                    android:textOff="@string/bellow"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/avgValAboveEditText"
+                android:layout_width="48dp"
+                android:maxWidth="48dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/db"
+                android:textSize="18sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="2"
+                android:labelFor="@id/avgValAboveEditText"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_column="3"/>
+
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_value_is"
+                    android:textSize="18sp" />
+
+                <ToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textOn="@string/above"
+                    android:textOff="@string/bellow"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/currentValAboveEditText"
+                android:layout_width="48dp"
+                android:maxWidth="48dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/db"
+                android:textSize="18sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="2"
+                android:labelFor="@id/currentValAboveEditText"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_column="3"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/minimum_value_is_bellow"
+                android:textSize="18sp"
+                android:layout_column="0"/>
+            <EditText
+                android:id="@+id/minValAboveEditText"
+                android:layout_width="48dp"
+                android:maxWidth="48dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="1"
+                android:autofillHints="" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/db"
+                android:textSize="18sp"
+                android:layout_marginStart="8dp"
+                android:layout_column="2"
+                android:labelFor="@id/minValAboveEditText"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:scaleX="1.3"
+                android:scaleY="1.3"
+                android:layout_column="3"/>
+        </GridLayout>
+
+    </LinearLayout>
 </layout>

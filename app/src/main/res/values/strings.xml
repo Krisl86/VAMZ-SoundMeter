@@ -28,4 +28,13 @@
     <string name="volume_statistics">Volume Statistics</string>
     <string name="volume_meter_app">Volume Meter App</string>
     <string name="notifications">Notifications</string>
+    <string name="set_notification_for">Set Notification for</string>
+    <string name="db">db</string>
+    <string name="send_notification_when">Send notification when</string>
+    <string name="maximum_value_is_above">Maximum value is above</string>
+    <string name="minimum_value_is_bellow">Minimum value is bellow</string>
+    <string name="above">above</string>
+    <string name="bellow">bellow</string>
+    <string name="average_value_is">Average value is</string>
+    <string name="current_value_is">Current value is</string>
 </resources>
