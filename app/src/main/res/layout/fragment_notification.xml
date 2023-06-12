@@ -43,7 +43,8 @@
                 android:inputType="number"
                 android:textSize="20sp"
                 android:layout_marginStart="8dp"
-                android:layout_column="1"/>
+                android:layout_column="1"
+                android:text="@{vm.maxValue.toString()}"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,6 +54,7 @@
                 android:layout_column="2"
                 android:labelFor="@id/maxValAboveEditText"/>
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/maxSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -75,10 +77,12 @@
                     android:textSize="18sp"/>
 
                 <ToggleButton
+                    android:id="@+id/avgBellowAboveToggleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:textOn="@string/above"
-                    android:textOff="@string/bellow"/>
+                    android:textOff="@string/bellow"
+                    android:checked="@{vm.averageBellow.booleanValue()}"/>
             </LinearLayout>
             <EditText
                 android:id="@+id/avgValAboveEditText"
@@ -88,7 +92,8 @@
                 android:inputType="number"
                 android:textSize="20sp"
                 android:layout_marginStart="8dp"
-                android:layout_column="1"/>
+                android:layout_column="1"
+                android:text="@{vm.averageValue.toString()}"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,6 +103,7 @@
                 android:layout_column="2"
                 android:labelFor="@id/avgValAboveEditText"/>
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/avgSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -120,10 +126,12 @@
                     android:textSize="18sp" />
 
                 <ToggleButton
+                    android:id="@+id/currentBellowAboveToggleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:textOn="@string/above"
-                    android:textOff="@string/bellow"/>
+                    android:textOff="@string/bellow"
+                    android:checked="@{vm.currentBellow.booleanValue()}"/>
             </LinearLayout>
             <EditText
                 android:id="@+id/currentValAboveEditText"
@@ -133,7 +141,8 @@
                 android:inputType="number"
                 android:textSize="20sp"
                 android:layout_marginStart="8dp"
-                android:layout_column="1"/>
+                android:layout_column="1"
+                android:text="@{vm.currentValue.toString()}"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,6 +152,7 @@
                 android:layout_column="2"
                 android:labelFor="@id/currentValAboveEditText"/>
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/currentSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -166,7 +176,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="8dp"
                 android:layout_column="1"
-                android:autofillHints="" />
+                android:text="@{vm.minValue.toString()}"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,6 +186,7 @@
                 android:layout_column="2"
                 android:labelFor="@id/minValAboveEditText"/>
             <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/minSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

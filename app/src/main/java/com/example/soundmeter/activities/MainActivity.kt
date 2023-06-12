@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val mainFragment = MainFragment()
         private val historyFragment = HistoryFragment()
         private val calibrationFragment = CalibrationFragment()
-        private val infoFragment = InfoFragment()
+        val infoFragment = InfoFragment()
         private val notificationFragment = NotificationFragment()
     }
 

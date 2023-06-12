@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.soundmeter.soundRecording.VolumeRecorder
+import com.example.soundmeter.utilities.Event
 
 const val defaultMin = 9999
 const val defaultMax = -9999
@@ -30,6 +31,10 @@ class InfoViewModel : ViewModel() {
 
     private val values = mutableListOf<Int>()
 
+    val maxValueChanged = Event<Int>()
+    val minValueChanged = Event<Int>()
+    val averageValueChanged = Event<Int>()
+
     init {
         volumeRecorder.decibelsChanged += ::recalculateValues
         volumeRecorder.recordingStopped += { resetValues() }
@@ -52,6 +57,11 @@ class InfoViewModel : ViewModel() {
             for (i in 0..10)
                 values.removeAt(i)
         }
+
+        maxValueChanged.invoke(_maxValue.value!!)
+        minValueChanged.invoke(_minValue.value!!)
+        averageValueChanged.invoke(averageValue.value!!)
+
     }
 
     private fun resetValues() {
