@@ -6,12 +6,21 @@ import java.util.Timer
 import kotlin.concurrent.timerTask
 import kotlin.math.roundToInt
 
+/**
+ * State of recording
+ *
+ */
 enum class RecordingState {
     STARTED,
     PAUSED,
     STOPPED
 }
 
+/**
+ * Abstraction over SoundRecorder class - provides additional features
+ * specifically for volume recording. Also features various methods for ease of use.
+ *
+ */
 class VolumeRecorder {
 
     companion object {
@@ -34,6 +43,9 @@ class VolumeRecorder {
             noiseRefStringChanged.invoke(value)
         }
 
+    /**
+     * Current state of recording
+     */
     var recordingState = RecordingState.STOPPED
         private set(value) {
             field = value
@@ -43,6 +55,9 @@ class VolumeRecorder {
     var saveToFile = false
     var refreshRate = 0.5f
 
+    /**
+     * Recorded volume is offset by this value to be correct
+     */
     var calibrationOffset: Int
         get() = recorder.calibrationOffset
         set(value) {
@@ -65,6 +80,10 @@ class VolumeRecorder {
         calibrationOffset = VolumeRecorder.calibrationOffset
     }
 
+    /**
+     * Switches between started and paused recording state.
+     *
+     */
     fun switchRecording() {
         if (recordingState == RecordingState.STARTED) {
             pauseRecording()
@@ -76,6 +95,10 @@ class VolumeRecorder {
         }
     }
 
+    /**
+     * Stops recording.
+     *
+     */
     fun stopRecording() {
         if (recordingState == RecordingState.STARTED || recordingState == RecordingState.PAUSED) {
             recorder.stop()

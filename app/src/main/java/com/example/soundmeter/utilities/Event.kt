@@ -1,5 +1,11 @@
 package com.example.soundmeter.utilities
 
+/**
+ * From stackOverflow :)
+ * Similar to C# events
+ *
+ * @param T
+ */
 class Event<T> {
     private val observers = mutableSetOf<(T) -> Unit>()
 

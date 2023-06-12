@@ -4,12 +4,21 @@ import android.media.MediaRecorder
 import java.io.File
 import kotlin.math.log10
 
+/**
+ * State of recording
+ *
+ */
 enum class RecorderState {
     RELEASED,
     RECORDING,
     PAUSED,
 }
 
+/**
+ * Abstraction over the MediaRecorder class,
+ * simple recording, provides volume level.
+ *
+ */
 class SoundRecorder {
     private val maxAmplitude = 32767.0 // the actual max possible amplitude for 16-bit audio sample
                                        // as provided by the android media recorder
@@ -22,6 +31,11 @@ class SoundRecorder {
 
     var calibrationOffset = 0
 
+    /**
+     * Start recording
+     *
+     * @param saveRecording save recording to file
+     */
     fun start(saveRecording: Boolean) {
         if (state == RecorderState.PAUSED)
             resume()
@@ -49,6 +63,10 @@ class SoundRecorder {
         }
     }
 
+    /**
+     * Pause recording
+     *
+     */
     fun pause() {
         if (state == RecorderState.RECORDING) {
             recorder.pause()
@@ -56,6 +74,10 @@ class SoundRecorder {
         }
     }
 
+    /**
+     * Stop recording
+     *
+     */
     fun stop() {
         if (state == RecorderState.PAUSED || state == RecorderState.RECORDING) {
             recorder.stop()
@@ -69,6 +91,11 @@ class SoundRecorder {
         }
     }
 
+    /**
+     * Calculates and returns decibel noise value - this is based on amplitude ratio.
+     *
+     * @return
+     */
     fun getDecibelValue(): Double {
         val amplitude = recorder.maxAmplitude // despite the name 'maxAmplitude'
         // it is actually the recorded amplitude value

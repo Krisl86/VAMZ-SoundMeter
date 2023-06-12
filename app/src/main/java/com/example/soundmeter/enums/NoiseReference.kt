@@ -1,5 +1,12 @@
 package com.example.soundmeter.enums
 
+/**
+ * Stores string values describing noise level and border values
+ *
+ * @property description description of noise level
+ * @property minValue minimum noise for given noise level
+ * @property maxValue maximum noise for given noise level
+ */
 enum class NoiseReference(val description: String, val minValue: Double, val maxValue: Double) {
     WHISPER("Whisper, Leaves rustling", 0.0, 29.0),
     HOME("Average home noise", 30.0, 49.0),
@@ -11,6 +18,12 @@ enum class NoiseReference(val description: String, val minValue: Double, val max
     GUN("Gunshot, Jet engine", 130.0, 140.0);
 
     companion object {
+        /**
+         * Returns noise level description string based on parameter value
+         *
+         * @param value noise level value
+         * @return
+         */
         fun stringByValue(value: Double): String {
             return if (value <= 0)
                 ""

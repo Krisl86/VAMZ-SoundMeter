@@ -12,7 +12,10 @@ import com.example.soundmeter.R
 import com.example.soundmeter.databinding.FragmentNotificationBinding
 import com.example.soundmeter.viewmodels.NotificationViewModel
 
-
+/**
+ * Currently unused feature - crashes
+ *
+ */
 class NotificationFragment : Fragment() {
 
     private lateinit var binding: FragmentNotificationBinding

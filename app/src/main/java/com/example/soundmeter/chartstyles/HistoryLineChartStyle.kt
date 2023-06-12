@@ -7,8 +7,18 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.LineDataSet
 
+/**
+ * Custom styling for LineChart
+ *
+ * @property context
+ */
 class HistoryLineChartStyle(val context: Context) {
 
+    /**
+     * Styles the given LineChart
+     *
+     * @param chart LineChart to style
+     */
     fun styleChart(chart: LineChart) {
         chart.apply {
             setDrawGridBackground(true)
@@ -33,6 +43,11 @@ class HistoryLineChartStyle(val context: Context) {
         }
     }
 
+    /**
+     * Styles given LineDataSet
+     *
+     * @param lineDataSet LineDataSet to style
+     */
     fun styleLine(lineDataSet: LineDataSet) {
         lineDataSet.apply {
             setDrawValues(false)

@@ -49,6 +49,11 @@ class MainActivity : AppCompatActivity() {
         initStartFragment()
     }
 
+    /**
+     * Switches to given fragment, sets it as current
+     *
+     * @param fragment fragment to set
+     */
     fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, fragment)
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = titleByFragment(fragment)
         currentFragment = fragment
     }
-
+    
     private fun checkPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
             != PackageManager.PERMISSION_GRANTED
