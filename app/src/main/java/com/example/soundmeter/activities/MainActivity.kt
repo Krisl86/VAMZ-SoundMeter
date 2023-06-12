@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         private val historyFragment = HistoryFragment()
         private val calibrationFragment = CalibrationFragment()
         private val infoFragment = InfoFragment()
+//        private val notificationFragment = NotificationFragment()
     }
 
     private var startActionBarMenuItem: MenuItem? = null
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.historyMenuItem -> setFragment(historyFragment)
                 R.id.mainMenuItem -> setFragment(mainFragment)
                 R.id.infoMenuItem -> setFragment(infoFragment)
+//                R.id.notificationMenuItem -> setFragment(notificationFragment)
             }; true
         }
 

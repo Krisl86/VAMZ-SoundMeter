@@ -5,7 +5,6 @@
     <string name="pause">Pause</string>
     <string name="save_recording">Save Recordings to Device</string>
     <string name="sound_recording_refresh_rate">Sound Recording Refresh Rate</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_to_the_sound_meter_app">Welcome to the Sound Meter App!</string>
     <string name="calibration_offset">Calibration offset</string>
     <string name="confirm">Confirm</string>

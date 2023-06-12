@@ -14,7 +14,7 @@ class SoundRecorder {
     private val maxAmplitude = 32767.0 // the actual max possible amplitude for 16-bit audio sample
                                        // as provided by the android media recorder
 
-    private val savePath = "/storage/emulated/0/Download/hello.mp3" // TODO change this storage
+    private val savePath = "/storage/emulated/0/Download/volumeRecorderOutput.mp3"
 
     private var saveRecordingToFile = false
     private var state = RecorderState.RELEASED
