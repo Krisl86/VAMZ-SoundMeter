@@ -100,8 +100,7 @@ class SoundRecorder {
         val amplitude = recorder.maxAmplitude // despite the name 'maxAmplitude'
         // it is actually the recorded amplitude value
         val partial = (20 * (log10(amplitude / maxAmplitude)))
-        val final = partial + calibrationOffset
-        return final
+        return partial + calibrationOffset
     }
 
     private fun resume() {
