@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.math.log10
 
 /**
- * State of recording
+ * State of SoundRecorder and it's MediaRecorder
  *
  */
 enum class RecorderState {
@@ -99,7 +99,9 @@ class SoundRecorder {
     fun getDecibelValue(): Double {
         val amplitude = recorder.maxAmplitude // despite the name 'maxAmplitude'
         // it is actually the recorded amplitude value
-        return (20 * (log10(amplitude / maxAmplitude))) + calibrationOffset
+        val partial = (20 * (log10(amplitude / maxAmplitude)))
+        val final = partial + calibrationOffset
+        return final
     }
 
     private fun resume() {

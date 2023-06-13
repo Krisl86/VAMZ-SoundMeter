@@ -31,7 +31,7 @@ class InfoViewModel : ViewModel() {
 
     private val values = mutableListOf<Int>()
 
-    val maxValueChanged = Event<Int>()
+    val maxValueChanged = Event<Int>() // TODO remove these events
     val minValueChanged = Event<Int>()
     val averageValueChanged = Event<Int>()
 
